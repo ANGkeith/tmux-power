@@ -51,7 +51,7 @@ LS="$LS#[fg=$GR2,bg=$BG]"
 tmux_set status-left "$LS"
 
 # Right side of status bar
-uptime=$(uptime | awk -F'( |,|:)+' '{print $6"d",$8":"$9}')
+uptime=$(uptime | sed 's|.*up \([^,]*\),.*|\1|g')
 tmux_set status-right-bg $GR0
 tmux_set status-right-fg colour243
 tmux_set status-right-length 150
