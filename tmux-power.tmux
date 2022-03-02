@@ -22,7 +22,7 @@ cpu_icon=" "
 TC=#d6d6d6
 GR0=#005f86
 GR1=#62a5b1
-GR2=#3E999F
+GR2=#5F87AF
 #4d808a
 GR3=colour238
 GR6=#D7DDDF
