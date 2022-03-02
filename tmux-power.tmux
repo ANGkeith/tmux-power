@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 tmux_get() {
-    # $1: option
-    # $2: default value
-    local value="$(tmux show -gqv "$1")"
-    [ -n "$value" ] && echo "$value" || echo "$2"
+	# $1: option
+	# $2: default value
+	local value="$(tmux show -gqv "$1")"
+	[ -n "$value" ] && echo "$value" || echo "$2"
 }
 
 tmux_set() {
-    # $1: option
-    # $2: value
-    tmux set-option -gq "$1" "$2"
+	# $1: option
+	# $2: value
+	tmux set-option -gq "$1" "$2"
 }
 
 # Options
@@ -18,7 +18,6 @@ user_icon=" "
 uptime_icon=" "
 ram_icon=" "
 cpu_icon=" "
-UPTIME_ICON=""
 
 # TC=#E4E4E4
 TC=#d6d6d6
@@ -52,19 +51,18 @@ tmux_set status-left "$LS"
 
 # Right side of status bar
 uptime=$(uptime | awk -F'( |,|:)+' '{print $6"d",$8":"$9}')
-tmux_set status-right-bg $GR0
+tmux_set status-right-bg "$GR0"
 tmux_set status-right-fg colour243
 tmux_set status-right-length 150
-RS="#[fg=$TC,bg=$GR2] ${cpu_icon} #{cpu_percentage} ${ram_icon} #{ram_percentage} #[fg=$TC,bg=$GR2]#[fg=$GR0,bg=$TC] ${uptime_icon}${uptime} "
+RS="#[fg=$TC,bg=$GR2] $cpu_icon #{cpu_percentage} $ram_icon #{ram_percentage} #[fg=$TC,bg=$GR2]#[fg=$GR0,bg=$TC] $uptime_icon$uptime "
 RS="#[fg=$GR2,bg=$BG]$RS"
 
 tmux_set status-right "$RS"
 
-
 # Window status
 tmux_set window-status-format " #I:#W#F "
 tmux_set window-status-current-format "#[fg=$BG,bg=$TC]#[fg=$BG,bold] #I:#W#F #[fg=$TC,bg=$BG,nobold]"
-tmux_set window-status-activity-style bg=$GR0
+tmux_set window-status-activity-style bg="$GR0"
 
 # Window separator
 tmux_set window-status-separator ""
@@ -73,23 +71,23 @@ tmux_set window-status-separator ""
 tmux_set status-justify left
 
 # Pane border
-tmux_set pane-border-style fg=$GR3 bg=default
+tmux_set pane-border-style fg="$GR3" bg=default
 
 # Active pane border
-tmux_set pane-active-border-style fg=red bg=$BG
+tmux_set pane-active-border-style fg=red bg="$BG"
 
 # Pane number indicator
-tmux_set display-panes-colour $GR3
-tmux_set display-panes-active-colour $TC
+tmux_set display-panes-colour "$GR3"
+tmux_set display-panes-active-colour "$TC"
 
 # Clock mode
 tmux_set clock-mode-colour colour002
 tmux_set clock-mode-style 24
 
 # Command message
-tmux_set message-command-style fg=$TC bg=$BG
+tmux_set message-command-style fg="$TC" bg="$BG"
 
 # Copy mode highlight
-tmux_set mode-style bg=#ffd787 fg=$GR1
+tmux_set mode-style bg=#ffd787 fg="$GR1"
 
 tmux_set status-position top
