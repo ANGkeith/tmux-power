@@ -15,7 +15,6 @@ tmux_set() {
 # Options
 session_icon=""
 user_icon=" "
-uptime_icon=" "
 ram_icon=" "
 cpu_icon=" "
 
@@ -50,11 +49,10 @@ LS="$LS#[fg=$GR2,bg=$BG]"
 tmux_set status-left "$LS"
 
 # Right side of status bar
-uptime=$(uptime | awk -F'( |,|:)+' '{print $6"d",$8":"$9}')
 tmux_set status-right-bg "$GR0"
 tmux_set status-right-fg colour243
 tmux_set status-right-length 150
-RS="#[fg=$TC,bg=$GR2] $cpu_icon #{cpu_percentage} $ram_icon #{ram_percentage} #[fg=$TC,bg=$GR2]#[fg=$GR0,bg=$TC] $uptime_icon$uptime "
+RS="#[fg=$TC,bg=$GR2] $cpu_icon #{cpu_percentage} $ram_icon #{ram_percentage} #[fg=$TC,bg=$GR2]"
 RS="#[fg=$GR2,bg=$BG]$RS"
 
 tmux_set status-right "$RS"
