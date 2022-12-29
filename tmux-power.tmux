@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+
+SCRIPT_DIRECTORY=$(cd "$(dirname -- "$0")" && pwd -P)
+
 tmux_get() {
   # $1: option
   # $2: default value
@@ -52,7 +55,7 @@ tmux_set status-left "$LS"
 tmux_set status-right-bg "$GR0"
 tmux_set status-right-fg colour243
 tmux_set status-right-length 150
-RS="#[fg=$TC,bg=$GR2] $cpu_icon #{cpu_percentage} $ram_icon #{ram_percentage} #[fg=$TC,bg=$GR2]"
+RS="#[fg=$TC,bg=$GR2] $cpu_icon #{cpu_percentage} $ram_icon #{ram_percentage} #($SCRIPT_DIRECTORY/scripts/show_aws_sso_expiry.sh) #[fg=$TC,bg=$GR2]"
 RS="#[fg=$GR2,bg=$BG]$RS"
 
 tmux_set status-right "$RS"
