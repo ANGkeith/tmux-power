@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 tmux_get() {
-	# $1: option
-	# $2: default value
-	local value="$(tmux show -gqv "$1")"
-	[ -n "$value" ] && echo "$value" || echo "$2"
+  # $1: option
+  # $2: default value
+  local value="$(tmux show -gqv "$1")"
+  [ "$value" != "" ] && echo "$value" || echo "$2"
 }
 
 tmux_set() {
-	# $1: option
-	# $2: value
-	tmux set-option -gq "$1" "$2"
+  # $1: option
+  # $2: value
+  tmux set-option -gq "$1" "$2"
 }
 
 # Options
