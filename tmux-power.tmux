@@ -43,7 +43,7 @@ tmux_set status-attr none
 tmux_set status-left-bg "$GR0"
 tmux_set status-left-fg colour243
 tmux_set status-left-length 150
-LS="#[fg=$GR0,bg=$TC,bold] 🦍 #[fg=$TC,bg=$GR2,nobold]#[fg=$TC,bg=$GR2] #S "
+LS="#[fg=$GR0,bg=$TC,bold]#($SCRIPT_DIRECTORY/scripts/show-background-jobs.sh) 🦍 #[fg=$TC,bg=$GR2,nobold]#[fg=$TC,bg=$GR2] #S "
 LS="$LS#[fg=$GR2,bg=$BG]"
 
 tmux_set status-left "$LS"
