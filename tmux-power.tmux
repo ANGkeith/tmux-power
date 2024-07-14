@@ -16,8 +16,6 @@ tmux_set() {
 }
 
 # Options
-session_icon=""
-user_icon=" "
 ram_icon=" "
 cpu_icon=" "
 
@@ -45,8 +43,7 @@ tmux_set status-attr none
 tmux_set status-left-bg "$GR0"
 tmux_set status-left-fg colour243
 tmux_set status-left-length 150
-user=$(whoami)
-LS="#[fg=$GR0,bg=$TC,bold] $user_icon $user #[fg=$TC,bg=$GR2,nobold]#[fg=$TC,bg=$GR2] $session_icon #S "
+LS="#[fg=$GR0,bg=$TC,bold] 🦍 #[fg=$TC,bg=$GR2,nobold]#[fg=$TC,bg=$GR2] #S "
 LS="$LS#[fg=$GR2,bg=$BG]"
 
 tmux_set status-left "$LS"
@@ -55,11 +52,13 @@ tmux_set status-left "$LS"
 tmux_set status-right-bg "$GR0"
 tmux_set status-right-fg colour243
 tmux_set status-right-length 150
-RS="#[fg=$TC,bg=$GR2] $cpu_icon #{cpu_percentage} $ram_icon #{ram_percentage} #($SCRIPT_DIRECTORY/scripts/show_aws_sso_expiry.sh) #[fg=$TC,bg=$GR2]"
+RS="#[fg=$TC,bg=$GR2] "$cpu_icon"#{cpu_percentage} $ram_icon #{ram_percentage} #($SCRIPT_DIRECTORY/scripts/show_aws_sso_expiry.sh) #[fg=$TC,bg=$GR2]"
 RS="#[fg=$GR2,bg=$BG]$RS"
 
 tmux_set status-right "$RS"
 
+# tmux_set window-status-format " #[fg=$TC,bold] #I #[fg=$TC,nobold]#{b:pane_current_path}(#W)#F"
+# tmux_set window-status-current-format "#[fg=$BG,bg=$TC]#[fg=$GR3,bold] #I #[fg=$BG,bg=$TC,bold]#{b:pane_current_path}(#W) #[fg=$TC,bg=$BG,nobold]"
 # Window status
 tmux_set window-status-format " #I:#W#F "
 tmux_set window-status-current-format "#[fg=$BG,bg=$TC]#[fg=$BG,bold] #I:#W#F #[fg=$TC,bg=$BG,nobold]"
